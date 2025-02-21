@@ -7,16 +7,16 @@
 #include <sstream>
 #include <stdio.h>
 #include <stdlib.h>
-
+using namespace std;
 int main(int argc, char* argv[]) {
 	if (argc != 2) {
         std::cerr << "Diretório com as instâncias não foi informado." << std::endl;
         exit (1);
     }
-    for(int i=0;i<argc; i++){
-        std::cout << argv[i] << std::endl;
-    }
-
+    // for(int i=0;i<argc; i++){
+    //     std::cout << argv[i] << std::endl;
+    // }
+   
 	std::string nomeDir = argv[1];
 	DIR *dir = 0;
     struct dirent *entrada = 0;
@@ -33,8 +33,7 @@ int main(int argc, char* argv[]) {
 		if (entrada->d_type == isFile){
             std::stringstream convert;
             std::cout << " Padronizando: " << nomeDir+entrada->d_name << std::endl;
-            std::string xF = nomeDir + "saida/"+entrada->d_name + convert.str();
-            std::string cmd = "./main  <" + nomeDir+entrada->d_name + " > " + nomeDir + "saida/"+entrada->d_name  + convert.str();
+            std::string cmd = "./main  <" + nomeDir+entrada->d_name + " >" + nomeDir + "saida/"+entrada->d_name  + convert.str();
             const char * c = cmd.c_str();
             int s = system(c);
 		}
